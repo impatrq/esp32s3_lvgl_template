@@ -1,0 +1,22 @@
+{
+	"name": "ESP-IDF",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"terminal.integrated.defaultProfile.linux": "bash",
+				"idf.gitPath": "/usr/bin/git"
+			},
+			"extensions": [
+				"espressif.esp-idf-extension",
+				"espressif.esp-idf-web",
+				"ms-vscode.cpptools",
+				"ms-vscode-remote.remote-containers",
+				"ms-vscode.vscode-serial-monitor"
+			]
+		}
+	},
+	"runArgs": ["--privileged"]
+}
