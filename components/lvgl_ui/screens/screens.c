@@ -18,14 +18,7 @@ static const char *TAG = "screens";
  * Squareline declares in its generated header (e.g. &ui_Screen1).
  */
 static const screen_config_t screen_configs[SCREEN_MAX] = {
-    [SCREEN_MAIN] = {
-        .name       = "Main",
-        .screen_obj = &ui_Screen1,
-        .prepare    = NULL,
-        .init       = scr_main_init,
-        .uninit     = scr_main_uninit,
-        .step       = scr_main_step,
-    },
+    // [SCREEN_MAIN] = SCREEN_REGISTER("Main", ui_scrMain, main)
 };
 
 static ui_screens_t s_active_screen = SCREEN_MAX; /* SCREEN_MAX = "unknown" */

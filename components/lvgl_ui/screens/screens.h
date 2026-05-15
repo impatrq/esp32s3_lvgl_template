@@ -3,6 +3,8 @@
 
 #include "lvgl.h"
 
+#define SCREEN_REGISTER(name, scr, fn_name) { name, &scr, scr_##fn_name##_prepare, scr_##fn_name##_init, scr_##fn_name##_uninit, scr_##fn_name##_step }
+
 /**
  * Screen enum — add a value for every screen in your Squareline project,
  * in the order you want them registered. Keep SCREEN_MAX last.
