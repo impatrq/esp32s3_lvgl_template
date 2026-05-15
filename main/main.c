@@ -5,7 +5,7 @@
 #include "bsp_touch.h"
 #include "bsp_lvgl.h"
 
-#include "ui.h"
+#include "lvgl_ui.h"
 
 /** @brief App entry point */
 void app_main(void) {
@@ -16,9 +16,9 @@ void app_main(void) {
     ESP_ERROR_CHECK(bsp_lvgl_init());
     bsp_display_brightness_init();
     bsp_display_set_brightness(100);
-    // Make sure to take LVGL mutex
+    // Always take LVGL mutex before doing anything with LVGL
     if (lvgl_port_lock(0)) {
-        ui_init();
+        lvgl_ui_start();
         lvgl_port_unlock();
     }
 }
