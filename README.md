@@ -69,8 +69,74 @@ El proyecto incluye un **Dev Container** listo para usar con VS Code. Todo el to
 
 ### Requisitos previos
 
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (o Docker Engine en Linux)
 - [Visual Studio Code](https://code.visualstudio.com/) con la extensión **Dev Containers** (`ms-vscode-remote.remote-containers`)
+
+### Clonar el repositorio
+
+```bash
+git clone https://github.com/carlassaraf/esp32s3_lvgl_template.git
+cd esp32s3_lvgl_template
+```
+
+### Instalación de Docker
+
+#### Linux (Ubuntu / Debian)
+
+```bash
+# Eliminar versiones antiguas si las hubiera
+sudo apt-get remove -y docker docker-engine docker.io containerd runc
+
+# Instalar dependencias previas
+sudo apt-get update
+sudo apt-get install -y ca-certificates curl gnupg
+
+# Añadir la clave GPG oficial de Docker
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg \
+  | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+# Añadir el repositorio oficial
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \
+  https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" \
+  | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# Instalar Docker Engine
+sudo apt-get update
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io \
+  docker-buildx-plugin docker-compose-plugin
+
+# Añadir tu usuario al grupo docker (evita usar sudo en cada comando)
+sudo usermod -aG docker $USER
+newgrp docker
+
+# Verificar que la instalación funciona
+docker run hello-world
+```
+
+> **Otras distribuciones:** Consulta la [documentación oficial](https://docs.docker.com/engine/install/) para Fedora, RHEL, Arch y otras.
+
+#### Windows
+
+1. Descarga **Docker Desktop para Windows** desde [docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop/).
+2. Ejecuta el instalador (`Docker Desktop Installer.exe`) y sigue el asistente.
+3. Cuando se solicite, habilita la integración con **WSL 2** (recomendado) o con **Hyper-V**.
+4. Reinicia el equipo si el instalador lo pide.
+5. Abre Docker Desktop y espera a que el ícono de la barra de tareas indique que el motor está en ejecución.
+6. Verifica la instalación desde PowerShell o CMD:
+
+```powershell
+docker run hello-world
+```
+
+> **WSL 2 (recomendado):** Docker Desktop con WSL 2 ofrece mejor rendimiento. Si aún no tienes WSL 2, ejecuta en PowerShell como administrador:
+> ```powershell
+> wsl --install
+> ```
+> Reinicia el equipo antes de instalar Docker Desktop.
 
 ### Arrancar el entorno
 
