@@ -568,7 +568,7 @@ Crea o abre el proyecto de SquareLine y ajusta la configuración en **Project Se
 | Color swap | **Disabled** (`LV_COLOR_16_SWAP = 0`) |
 | Screen width | **320** px (landscape) / **172** px (portrait) |
 | Screen height | **172** px (landscape) / **320** px (portrait) |
-| LVGL include | `lvgl/lvgl.h` |
+| LVGL include | `lvgl.h` |
 
 > **Orientación:** La pantalla nativa es 172 × 320 (portrait). Si usas `BSP_DISPLAY_ROTATION = 90` (landscape), diseña en SquareLine con 320 × 172.
 
