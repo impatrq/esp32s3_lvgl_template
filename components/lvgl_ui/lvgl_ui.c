@@ -19,8 +19,10 @@ void lvgl_ui_start(void)
     ui_update_init();
     disp_timeout_init(TIMEOUT_NEVER, TIMEOUT_NEVER);
 
-    ui_init();              /* Squareline: create all LVGL screen objects */
-    ui_screens_prepare();   /* call prepare() on every registered screen */
+    ui_init();
+    ui_screens_prepare();
+
+    ui_screens_navigate(SCREEN_SPLASH);
 
     lv_timer_create(ui_step_timer_cb, UI_STEP_PERIOD_MS, NULL);
 }
