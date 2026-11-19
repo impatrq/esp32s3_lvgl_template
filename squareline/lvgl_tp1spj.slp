@@ -1,12 +1,12 @@
 {
-    "uiExportFolderPath": "",
-    "projectExportFolderPath": "",
-    "drive_stdio": "",
+    "uiExportFolderPath": "/Users/admin/esp32s3_lvgl_template/components/lvgl_ui/ui",
+    "projectExportFolderPath": "/Users/admin/esp32s3_lvgl_template/squareline",
+    "drive_stdio": "-",
     "drive_stdio_path": "",
-    "drive_posix": "",
+    "drive_posix": "-",
     "drive_posix_path": "",
-    "drive_win32": "",
+    "drive_win32": "-",
     "drive_win32_path": "",
-    "drive_fatfs": "",
+    "drive_fatfs": "-",
     "drive_fatfs_path": ""
 }
