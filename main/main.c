@@ -7,6 +7,12 @@
 
 #include "lvgl_ui.h"
 
+static void backlight_anim_cb(void *var, int32_t v)
+{
+    (void)var;
+    bsp_display_set_brightness((uint8_t)v);
+}
+
 /** @brief App entry point */
 void app_main(void) {
     // Initialize necessary peripherals to handle display and touch
@@ -15,10 +21,19 @@ void app_main(void) {
     bsp_touch_init(i2c_bus);
     ESP_ERROR_CHECK(bsp_lvgl_init());
     bsp_display_brightness_init();
-    bsp_display_set_brightness(100);
+    bsp_display_set_brightness(0);
+
     // Always take LVGL mutex before doing anything with LVGL
     if (lvgl_port_lock(0)) {
         lvgl_ui_start();
+
+        lv_anim_t a;
+        lv_anim_init(&a);
+        lv_anim_set_exec_cb(&a, backlight_anim_cb);
+        lv_anim_set_values(&a, 0, 100);
+        lv_anim_set_time(&a, 500);
+        lv_anim_start(&a);
+
         lvgl_port_unlock();
     }
 }
