@@ -1,24 +1,15 @@
 #include "screens.h"
-#include "scr_main.h"
+#include "scr_splash.h"
+#include "scr_home.h"
 #include "ui.h"             /* Squareline export — screen object declarations */
 #include "esp_log.h"
 
 static const char *TAG = "screens";
 
-/**
- * Screen registry.
- *
- * When you add a screen in Squareline Studio:
- *   1. Add its value to ui_screens_t in screens.h.
- *   2. Create scr_<name>.c/h in this directory.
- *   3. Add an entry below mapping the enum to the Squareline lv_obj_t* and
- *      your controller callbacks.
- *
- * The .screen_obj field must point to the extern lv_obj_t* variable that
- * Squareline declares in its generated header (e.g. &ui_Screen1).
- */
+/* Screen registry: enum value -> Squareline screen object + controller callbacks */
 static const screen_config_t screen_configs[SCREEN_MAX] = {
-    [SCREEN_MAIN] = SCREEN_REGISTER("Main", ui_scrMain, main),
+    [SCREEN_SPLASH] = SCREEN_REGISTER("Splash", ui_scrSplash, splash),
+    [SCREEN_HOME]   = SCREEN_REGISTER("Home",   ui_scrHome,   home),
 };
 
 static ui_screens_t s_active_screen = SCREEN_MAX; /* SCREEN_MAX = "unknown" */
