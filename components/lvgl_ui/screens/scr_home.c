@@ -27,6 +27,13 @@ static void update_home_widgets(void)
 
     if (ui_arcBattery) {
         lv_arc_set_value(ui_arcBattery, pct);
+        lv_color_t st_col = (pct > 50) ? lv_color_hex(0x3FB950) :
+                            (pct > 20) ? lv_color_hex(0xD29922) :
+                                         lv_color_hex(0xF85149);
+        lv_obj_set_style_arc_color(ui_arcBattery, st_col, LV_PART_INDICATOR);
+        if (ui_lblBattery) {
+            lv_obj_set_style_text_color(ui_lblBattery, st_col, 0);
+        }
     }
     if (ui_lblBattery) {
         snprintf(buf, sizeof(buf), "%d%%", pct);
