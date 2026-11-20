@@ -23,13 +23,28 @@ static QueueHandle_t s_queue = NULL;
 typedef void (*handler_fn_t)(void *data);
 
 /* Placeholder — remove when UI_UPDATE_MAX has real commands */
-#if UI_UPDATE_MAX == 0
-static const handler_fn_t s_handlers[] = { NULL };
-#else
+#include "screens.h"
+#include "scr_home.h"
+#include "scr_sysinfo.h"
+#include "scr_settings.h"
+
+static void handle_btn_press(void *data)
+{
+    (void)data;
+    ui_screens_on_activity();
+    ui_screens_t cur = ui_screens_get_current();
+    if (cur == SCREEN_HOME) {
+        scr_home_step();
+    } else if (cur == SCREEN_SYSINFO) {
+        scr_sysinfo_reset_heap_tracker();
+    } else if (cur == SCREEN_SETTINGS) {
+        scr_settings_cycle_brightness();
+    }
+}
+
 static const handler_fn_t s_handlers[UI_UPDATE_MAX] = {
-    /* [UI_UPDATE_TEMPERATURE] = handle_temperature, */
+    [UI_UPDATE_BTN_PRESS] = handle_btn_press,
 };
-#endif
 
 /* ------------------------------------------------------------------ */
 
