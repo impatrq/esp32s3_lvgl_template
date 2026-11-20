@@ -2,6 +2,7 @@
 
 #include "bsp_i2c.h"
 #include "bsp_display.h"
+#include "bsp_button.h"
 #include "bsp_touch.h"
 #include "bsp_lvgl.h"
 
@@ -21,6 +22,7 @@ void app_main(void) {
     bsp_touch_init(i2c_bus);
     ESP_ERROR_CHECK(bsp_lvgl_init());
     bsp_display_brightness_init();
+    ESP_ERROR_CHECK(bsp_button_init());
     bsp_display_set_brightness(0);
 
     // Always take LVGL mutex before doing anything with LVGL
