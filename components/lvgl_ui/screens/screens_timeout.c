@@ -52,8 +52,8 @@ void disp_timeout_step(void)
     /* Return-to-main timeout (ignored while already on the main screen) */
     if (s_timeout_to_main_ms != TIMEOUT_NEVER &&
         inactive_ms >= s_timeout_to_main_ms &&
-        ui_screens_get_current() != SCREEN_MAIN) {
+        ui_screens_get_current() != SCREEN_HOME) {
         ESP_LOGD(TAG, "timeout → main");
-        ui_screens_navigate(SCREEN_MAIN);
+        ui_screens_navigate(SCREEN_HOME);
     }
 }
